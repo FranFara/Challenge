@@ -1,18 +1,24 @@
 import React, {useState} from 'react';
-import {View, FlatList, StyleSheet, Button} from 'react-native';
+import {View, FlatList, TextInput, StyleSheet, Button} from 'react-native';
+//import Autocomplete from 'react-native-autocomplete-input';
+
 import {connect} from 'react-redux';
 import Input from '../components/Input';
+/*
+
+Revisar para poder consumir la API desde este WillFrame
+
 import {fetchData} from '../actions';
+
+*/
+
+import {onChanGe, cancelButton} from '../actions';
 import CardItem from '../components/CardItem';
 
 const Search = props => {
-  const [string, setString] = useState('');
   const [arreglo, setArreglo] = useState('');
 
-  const buscarDrink = string => {
-    return setString(string);
-  };
-
+  //Render de Flat List
   const TragosList = itemData => {
     return (
       <CardItem
@@ -24,7 +30,11 @@ const Search = props => {
 
   return (
     <View style={styles.screen}>
-      <Input onChangeText={buscarDrink} />
+      <Input onChangeText={props.onTodoClick} />
+      <TextInput
+        value={props.query.queryDrink}
+        style={{backgroundColor: 'black', color: 'white'}}
+      />
       <Button
         title="mostrar lista"
         onPress={() => {
@@ -41,20 +51,19 @@ const Search = props => {
   );
 };
 
-Search.navigationOptions = navigationData => {
-  //console.log(navigationData);
-  /*headerTitle: () => (
+//Revisar para poder poner Componente Input en el Header
+/*Search.navigationOptions = navigationData => {
+  console.log(navigationData);
+  headerTitle: () => (
     <View
       style={{
         width: 370,
         flex: 2,
         height: 40,
         overflow: 'hidden',
-      }}>     
-
-    </View>
-  ),*/
-};
+      }}></View>
+  );
+};*/
 
 const styles = StyleSheet.create({
   screen: {
@@ -67,7 +76,16 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     data: state.cocktail,
+    query: state.query,
   };
 };
 
-export default connect(mapStateToProps, {fetchData})(Search);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTodoClick: text => {
+      dispatch(onChanGe(text));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

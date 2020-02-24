@@ -2,6 +2,8 @@ import {
   FETCHING_DATA,
   FETCHING_DATA_SUCCESS,
   FETCHING_DATA_FAILURE,
+  TYPE_INPUT,
+  CANCEL_BOTTON,
 } from '../constants';
 
 export const changeOnText = texto => {
@@ -34,3 +36,12 @@ export const fetchData = () => {
     }
   };
 };
+
+export const onChanGe = text => ({
+  type: TYPE_INPUT,
+  payload: text,
+});
+
+export const cancelButton = () => ({
+  type: TYPE_INPUT,
+});
