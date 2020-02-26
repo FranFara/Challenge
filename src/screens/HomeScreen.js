@@ -6,13 +6,15 @@ const Home = props => {
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>cockTAIL</Text>
-      <Input
-        placeholder="Search your favorite cocktail..."
-        onFocus={() => {
-          props.navigation.navigate({routeName: 'Search'});
-        }}
-        autoCapitalize="none"
-      />
+      <View style={{width: '100%', height: 60, alignItems: 'center'}}>
+        <Input
+          placeholder="Search your favorite cocktail..."
+          onFocus={() => {
+            props.navigation.navigate({routeName: 'Search'});
+          }}
+          autoCapitalize="none"
+        />
+      </View>
     </View>
   );
 };

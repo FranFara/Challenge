@@ -1,4 +1,4 @@
-import {TYPE_INPUT, CANCEL_BOTTON} from '../constants';
+import {TYPE_INPUT, CANCEL_BUTTON} from '../constants';
 
 const initialState = {
   queryDrink: '',
@@ -9,7 +9,7 @@ export default queryReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPE_INPUT:
       return {...state, queryDrink: action.payload, isEmpty: false};
-    case CANCEL_BOTTON:
+    case CANCEL_BUTTON:
       return {...state, queryDrink: '', isEmpty: true};
     default:
       return state;

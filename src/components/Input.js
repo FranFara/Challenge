@@ -7,6 +7,7 @@ const Input = props => {
 
 const styles = StyleSheet.create({
   input: {
+    flex: 1,
     width: '85%',
     backgroundColor: 'white',
     paddingHorizontal: 10,
