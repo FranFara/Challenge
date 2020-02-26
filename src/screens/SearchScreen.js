@@ -16,10 +16,8 @@ import CardItem from '../components/CardItem';
 const Search = props => {
   const [arreglo, setArreglo] = useState('');
   const [boton, setBoton] = useState();
-  /*const [loader, setLoader] = useState(
-    <ActivityIndicator size="large" color="#00ff00" />,
-  );*/
 
+  //---- Llamada a la API ----
   useEffect(() => {
     props.cargaApi();
   }, []);
@@ -29,11 +27,11 @@ const Search = props => {
     width: '100%',
     height: 50,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginVertical: 10,
   });
 
-  //Render de Flat List
+  //---- Render de Flat List ----
   const TragosList = itemData => {
     return (
       <CardItem
@@ -43,11 +41,10 @@ const Search = props => {
     );
   };
 
-  /* ---- Utilizacion de Redux Thunks
-   ---- Cambio de estado para mostrar Button "CANCEL"
+  /* 
+   ---- Cambio de estado para mostrar Button "CANCEL" ----
   */
   const SearchInputHandler = () => {
-    //
     setInputContainer({
       flexDirection: 'row',
       width: '90%',
@@ -60,12 +57,18 @@ const Search = props => {
         <Button color="red" title="Cancel" onPress={props.cleanInput} />
       </View>,
     );
-    // console.log(props.data.isFetching);
   };
 
-  /*if (props.data.isFetching === false) {
-    setLoader(<Text>Basta</Text>);
-  }*/
+  // ---- Utilizando Indicador de carga mientras se termina el llamado a la API ----
+  let loader = <ActivityIndicator size="large" color="blue" />;
+
+  if (!props.data.isFetching) {
+    loader = (
+      <View>
+        <Text>Basta</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.screen}>
@@ -83,7 +86,8 @@ const Search = props => {
           setArreglo(props.data.tragos);
         }}
       />
-      <View style={styles.loaderContainer}></View>
+
+      <View style={styles.loaderContainer}>{loader}</View>
       <FlatList
         keyExtractor={(item, index) => item.idDrink}
         data={arreglo}
@@ -107,10 +111,9 @@ const styles = StyleSheet.create({
   },
   loaderContainer: {
     width: 100,
-    height: 100,
-    justifyContent: 'center',
+    height: 300,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: '#093339',
   },
 });
 
