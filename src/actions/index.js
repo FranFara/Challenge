@@ -2,13 +2,10 @@ import {
   FETCHING_DATA,
   FETCHING_DATA_SUCCESS,
   FETCHING_DATA_FAILURE,
+  DELETE_DATA,
   TYPE_INPUT,
   CANCEL_BUTTON,
 } from '../constants';
-
-export const changeOnText = texto => {
-  return {type: 'ONCHANGE', data: texto};
-};
 
 export const fetchingDataRequeste = () => ({type: FETCHING_DATA});
 
@@ -21,6 +18,8 @@ export const fetchingDataFailure = error => ({
   type: FETCHING_DATA_FAILURE,
   payload: error,
 });
+
+export const deleteData = () => ({type: DELETE_DATA});
 
 export const fetchData = () => {
   return async dispatch => {
@@ -45,3 +44,7 @@ export const onChanGe = text => ({
 export const cancelButton = () => ({
   type: CANCEL_BUTTON,
 });
+
+/*export const changeOnText = text => {
+  return {type: 'ONCHANGE', data: text};
+};*/

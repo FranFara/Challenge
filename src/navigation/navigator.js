@@ -11,6 +11,6 @@ const AppNavigator = createStackNavigator({
   Search: {
     screen: SearchScreen,
   },
-});
+}, {headerMode: 'none'});
 
 export default createAppContainer(AppNavigator);

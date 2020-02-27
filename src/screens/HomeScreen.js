@@ -19,10 +19,6 @@ const Home = props => {
   );
 };
 
-Home.navigationOptions = {
-  headerShown: false,
-};
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

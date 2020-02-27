@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
   View,
-  Text,
   FlatList,
   StyleSheet,
   Button,
@@ -9,18 +8,14 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-import {onChanGe, cancelButton, fetchData} from '../actions';
+import {onChanGe, cancelButton, fetchData, deleteData} from '../actions';
 import Input from '../components/Input';
 import CardItem from '../components/CardItem';
 
 const Search = props => {
-  const [arreglo, setArreglo] = useState('');
-  const [boton, setBoton] = useState();
-
-  //---- Llamada a la API ----
-  useEffect(() => {
-    props.cargaApi();
-  }, []);
+  const {query, data, cleanInput, onTodoClick, cargaApi, cleanScreen} = props;
+  const [button, setButton] = useState();
+  const [load, setLoad] = useState(false);
 
   const [inputContainer, setInputContainer] = useState({
     flexDirection: 'column',
@@ -32,7 +27,7 @@ const Search = props => {
   });
 
   //---- Render de Flat List ----
-  const TragosList = itemData => {
+  const DrinkList = itemData => {
     return (
       <CardItem
         title={itemData.item.strDrink}
@@ -40,7 +35,6 @@ const Search = props => {
       />
     );
   };
-
   /* 
    ---- Cambio de estado para mostrar Button "CANCEL" ----
   */
@@ -52,46 +46,40 @@ const Search = props => {
       alignContent: 'center',
       alignItems: 'center',
     });
-    setBoton(
+    setButton(
       <View style={styles.buttonContainer}>
-        <Button color="red" title="Cancel" onPress={props.cleanInput} />
+        <Button
+          color="red"
+          title="Cancel"
+          onPress={() => {
+            cleanInput();
+            cleanScreen();
+            setLoad(false);
+          }}
+        />
       </View>,
     );
   };
 
-  // ---- Utilizando Indicador de carga mientras se termina el llamado a la API ----
-  let loader = <ActivityIndicator size="large" color="blue" />;
-
-  if (!props.data.isFetching) {
-    loader = (
-      <View>
-        <Text>Basta</Text>
-      </View>
-    );
+  if (query.queryDrink.length >= 3 && !load) {
+    cargaApi();
+    setLoad(true);
   }
 
   return (
     <View style={styles.screen}>
       <View style={inputContainer}>
         <Input
-          onChangeText={props.onTodoClick}
-          value={props.query.queryDrink}
+          onChangeText={onTodoClick}
+          value={query.queryDrink}
           onFocus={SearchInputHandler}
         />
-        {boton}
+        {button}
       </View>
-      <Button
-        title="mostrar lista"
-        onPress={() => {
-          setArreglo(props.data.tragos);
-        }}
-      />
-
-      <View style={styles.loaderContainer}>{loader}</View>
       <FlatList
         keyExtractor={(item, index) => item.idDrink}
-        data={arreglo}
-        renderItem={TragosList}
+        data={data.drinks}
+        renderItem={DrinkList}
         style={{width: '100%', paddingHorizontal: 10}}
       />
     </View>
@@ -134,6 +122,9 @@ const mapDispatchToProps = dispatch => {
     },
     cargaApi: () => {
       dispatch(fetchData());
+    },
+    cleanScreen: () => {
+      dispatch(deleteData());
     },
   };
 };
