@@ -7,6 +7,7 @@ import {
   Button,
   TouchableOpacity,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {onChanGe, cancelButton, fetchData, deleteData} from '../actions';
@@ -73,8 +74,10 @@ const Search = props => {
     setLoadedApi(false);
   }
 
-  let loader = <ActivityIndicator size="large" color="orange" />;
-  if (!data.isFetching) {
+  let loader;
+  if (data.isFetching && query.queryDrink.length >= 3) {
+    loader = <ActivityIndicator size="large" color="orange" />;
+  } else {
     loader = (
       <FlatList
         keyExtractor={(item, index) => item.idDrink}
@@ -86,7 +89,7 @@ const Search = props => {
   }
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <View style={inputContainer}>
         <TouchableOpacity style={styles.backButton} onPress={() => goBack()}>
           <Text style={styles.textButtonBack}>Back</Text>
@@ -99,7 +102,7 @@ const Search = props => {
         {button}
       </View>
       {loader}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -110,15 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   buttonContainer: {
-    alignItems: 'center',
-    alignContent: 'center',
     marginLeft: 10,
-  },
-  loaderContainer: {
-    width: 100,
-    height: 300,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
   flatListContainer: {
     width: '100%',

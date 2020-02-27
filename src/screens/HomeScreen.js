@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Platform} from 'react-native';
 import Input from '../components/Input';
 
 const Home = props => {
@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
     color: '#eb9d3d',
   },
   titleCocktail: {
-    fontFamily: 'sans-serif-medium',
+    fontFamily:
+      Platform.OS === 'android' ? 'sans-serif-medium' : 'Arial-BoldMT',
   },
   titleFinder: {
-    fontFamily: 'sans-serif-light',
+    fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : 'Arial',
   },
 });
 
