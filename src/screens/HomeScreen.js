@@ -6,7 +6,7 @@ const Home = props => {
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>cockTAIL</Text>
-      <View style={{width: '100%', height: 60, alignItems: 'center'}}>
+      <View style={styles.container}>
         <Input
           placeholder="Search your favorite cocktail..."
           onFocus={() => {
@@ -27,6 +27,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderWidth: 3,
     borderColor: '#eb9d3d',
+  },
+  container: {
+    width: '100%',
+    height: 50,
+    alignItems: 'center',
   },
   title: {
     fontSize: 30,

@@ -21,12 +21,12 @@ export const fetchingDataFailure = error => ({
 
 export const deleteData = () => ({type: DELETE_DATA});
 
-export const fetchData = () => {
+export const fetchData = textInput => {
   return async dispatch => {
     dispatch(fetchingDataRequeste());
     try {
       let response = await fetch(
-        'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=vodka',
+        'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + textInput,
       );
       let json = await response.json();
       dispatch(fetchingDataSuccess(json.drinks));
