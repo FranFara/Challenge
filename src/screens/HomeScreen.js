@@ -3,16 +3,19 @@ import {View, Text, StyleSheet} from 'react-native';
 import Input from '../components/Input';
 
 const Home = props => {
+  const {navigate} = props.navigation;
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>cockTAIL</Text>
+      <View style={styles.titleContainer}>
+        <Text style={{...styles.title, ...styles.titleCocktail}}>Cocktail</Text>
+        <Text style={{...styles.title, ...styles.titleFinder}}>Finder</Text>
+      </View>
       <View style={styles.container}>
         <Input
           placeholder="Search your favorite cocktail..."
           onFocus={() => {
-            props.navigation.navigate({routeName: 'Search'});
+            navigate({routeName: 'Search'});
           }}
-          autoCapitalize="none"
         />
       </View>
     </View>
@@ -33,10 +36,20 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
   },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
   title: {
     fontSize: 30,
     color: '#eb9d3d',
-    marginBottom: 5,
+  },
+  titleCocktail: {
+    fontFamily: 'sans-serif-medium',
+  },
+  titleFinder: {
+    fontFamily: 'sans-serif-light',
   },
 });
 

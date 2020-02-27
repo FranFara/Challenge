@@ -73,6 +73,18 @@ const Search = props => {
     setLoadedApi(false);
   }
 
+  let loader = <ActivityIndicator size="large" color="orange" />;
+  if (!data.isFetching) {
+    loader = (
+      <FlatList
+        keyExtractor={(item, index) => item.idDrink}
+        data={data.drinks}
+        renderItem={DrinkList}
+        style={styles.flatListContainer}
+      />
+    );
+  }
+
   return (
     <View style={styles.screen}>
       <View style={inputContainer}>
@@ -86,12 +98,7 @@ const Search = props => {
         />
         {button}
       </View>
-      <FlatList
-        keyExtractor={(item, index) => item.idDrink}
-        data={data.drinks}
-        renderItem={DrinkList}
-        style={styles.flatListContainer}
-      />
+      {loader}
     </View>
   );
 };
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   buttonContainer: {
     alignItems: 'center',
@@ -126,12 +133,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: 'white',
     alignItems: 'center',
-    marginRight: 5
+    marginRight: 5,
   },
   textButtonBack: {
     fontSize: 16,
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
 
 const mapStateToProps = state => {
