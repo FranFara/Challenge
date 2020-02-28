@@ -56,5 +56,5 @@ As it was requested in the requirements I used `redux`/`react-redux` and `redux-
 
 ## How the list can be more performant?
 
--Avoid additional representation of the items in the list by using `PureComponent` such as SectionList
--Increasing the number of characters to start searching
+- Avoid additional representation of the items in the list by using `PureComponent` such as SectionList
+- Increasing the number of characters to start searching
