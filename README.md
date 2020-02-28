@@ -19,16 +19,22 @@ npm install
 ```
 
 ## Running the app
-* Make sure you have xcode installed.
-* Make sure you have android studio installed.
+* Make sure you have xcode installed and configured.
+* Make sure you have android studio installed and configured.
 
 
 ### Android
 
-You need an android Emulator running, or an device connected with [developer options enabled](https://developer.android.com/studio/debug/dev-options).
-
 On the project folder do:
 1. npx react-native run-android
+
+
+### iOS
+On the project folder do:
+1. cd ios
+2. pod install
+3. after installation of dependencies run: cd ..
+4. npx react-native run-ios
 
 
 ## Dependencies & Libraries
@@ -48,6 +54,7 @@ Needed for navigation:
 As it was requested in the requirements I used `redux`/`react-redux` and `redux-thunk`: To be able to make asynchronous dispatches of actions, in this way I was able to call the api and dispatch the received data.  
 
 
-## How the list can be more performant if has to manage a big amount of data?
+## How the list can be more performant?
 
-Avoid extra rendering of the list items by usign `PureComponent` and not breaking its principles, avoiding conditional rendering.
+-Avoid additional representation of the items in the list by using `PureComponent` such as SectionList
+-Increasing the number of characters to start searching
