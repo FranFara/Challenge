@@ -1,33 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
   FlatList,
-  StyleSheet,
   Button,
   TouchableOpacity,
   ActivityIndicator,
-  SafeAreaView,
-} from 'react-native';
-import {connect} from 'react-redux';
-import {onChanGe, cancelButton, fetchData, deleteData} from '../actions';
-import Input from '../components/Input';
-import CardItem from '../components/CardItem';
+  SafeAreaView
+} from "react-native";
+import { connect } from "react-redux";
+import { onChanGe, cancelButton, fetchData, deleteData } from "../actions";
+import { stylesSearch } from "./styles";
+import Input from "../components/Input";
+import CardItem from "../components/CardItem";
 
 const Search = props => {
-  const {query, data, cleanInput, onTodoClick, loadApi, cleanScreen} = props;
-  const {goBack} = props.navigation;
+  const { query, data, cleanInput, onTodoClick, loadApi, cleanScreen } = props;
+  const { goBack } = props.navigation;
   const [button, setButton] = useState();
   const [loadedApi, setLoadedApi] = useState(false);
-
-  const [inputContainer, setInputContainer] = useState({
-    flexDirection: 'row',
-    width: '95%',
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginVertical: 10,
-  });
+  const [inputContainer, setInputContainer] = useState(
+    stylesSearch.setInputContainer
+  );
 
   //---- Render de Flat List ----
   const DrinkList = itemData => {
@@ -42,16 +36,8 @@ const Search = props => {
    ---- Cambio de estado para mostrar Button "CANCEL" ----
   */
   const SearchInputHandler = () => {
-    setInputContainer({
-      flexDirection: 'row',
-      width: '95%',
-      height: 50,
-      marginVertical: 10,
-      alignContent: 'center',
-      alignItems: 'center',
-    });
     setButton(
-      <View style={styles.buttonContainer}>
+      <View style={stylesSearch.buttonContainer}>
         <Button
           color="red"
           title="Cancel"
@@ -61,7 +47,7 @@ const Search = props => {
             setLoadedApi(false);
           }}
         />
-      </View>,
+      </View>
     );
   };
 
@@ -83,16 +69,19 @@ const Search = props => {
         keyExtractor={(item, index) => item.idDrink}
         data={data.drinks}
         renderItem={DrinkList}
-        style={styles.flatListContainer}
+        style={stylesSearch.flatListContainer}
       />
     );
   }
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={stylesSearch.screen}>
       <View style={inputContainer}>
-        <TouchableOpacity style={styles.backButton} onPress={() => goBack()}>
-          <Text style={styles.textButtonBack}>Back</Text>
+        <TouchableOpacity
+          style={stylesSearch.backButton}
+          onPress={() => goBack()}
+        >
+          <Text style={stylesSearch.textButtonBack}>Back</Text>
         </TouchableOpacity>
         <Input
           onChangeText={onTodoClick}
@@ -106,40 +95,10 @@ const Search = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  buttonContainer: {
-    marginLeft: 10,
-  },
-  flatListContainer: {
-    width: '100%',
-    paddingHorizontal: 10,
-  },
-  backButton: {
-    height: '80%',
-    width: '15%',
-    justifyContent: 'center',
-    backgroundColor: '#eb9d3d',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: 'white',
-    alignItems: 'center',
-    marginRight: 5,
-  },
-  textButtonBack: {
-    fontSize: 16,
-    color: 'white',
-  },
-});
-
 const mapStateToProps = state => {
   return {
     data: state.cocktail,
-    query: state.query,
+    query: state.query
   };
 };
 
@@ -156,7 +115,7 @@ const mapDispatchToProps = dispatch => {
     },
     cleanScreen: () => {
       dispatch(deleteData());
-    },
+    }
   };
 };
 
