@@ -1,9 +1,9 @@
 import React from "react";
 import { TextInput } from "react-native";
-import { stylesInput } from "./styles";
+import { styles } from "./styles";
 
 const Input = props => {
-  return <TextInput style={stylesInput.input} {...props} />;
+  return <TextInput style={styles.input} {...props} />;
 };
 
 export default Input;

@@ -7,10 +7,10 @@ const CardItem = props => {
 
   return (
     <TouchableOpacity>
-      <View style={styles.itemCard}>
-        <Image source={{ uri: image }} style={styles.imageCard} />
-        <View style={styles.titleContainerCard}>
-          <Text style={styles.titleCard}>{title}</Text>
+      <View style={styles.item}>
+        <Image source={{ uri: image }} style={styles.image} />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{title}</Text>
         </View>
       </View>
     </TouchableOpacity>

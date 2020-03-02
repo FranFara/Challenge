@@ -1,20 +1,20 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { stylesHome } from './styles';
-import Input from "../components/Input";
+import { styles } from './styles';
+import Input from "../../components/Input/Input";
 
 const Home = props => {
   const { navigate } = props.navigation;
   
   return (
-    <View style={stylesHome.screen}>
-      <View style={stylesHome.titleContainer}>
-        <Text style={{ ...stylesHome.title, ...stylesHome.titleCocktail }}>
+    <View style={styles.screen}>
+      <View style={styles.titleContainer}>
+        <Text style={{ ...styles.title, ...styles.titleCocktail }}>
           Cocktail
         </Text>
-        <Text style={{ ...stylesHome.title, ...stylesHome.titleFinder }}>Finder</Text>
+        <Text style={{ ...styles.title, ...styles.titleFinder }}>Finder</Text>
       </View>
-      <View style={stylesHome.container}>
+      <View style={styles.container}>
         <Input
           placeholder="Search your favorite cocktail..."
           onFocus={() => {

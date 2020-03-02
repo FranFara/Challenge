@@ -9,19 +9,16 @@ import {
   SafeAreaView
 } from "react-native";
 import { connect } from "react-redux";
-import { onChanGe, cancelButton, fetchData, deleteData } from "../actions";
-import { stylesSearch } from "./styles";
-import Input from "../components/Input";
-import CardItem from "../components/CardItem";
+import { onChanGe, cancelButton, fetchData, deleteData } from "../../actions";
+import { styles } from "./styles";
+import Input from "../../components/Input/Input";
+import CardItem from "../../components/CardItem/CardItem";
 
 const Search = props => {
   const { query, data, cleanInput, onTodoClick, loadApi, cleanScreen } = props;
   const { goBack } = props.navigation;
   const [button, setButton] = useState();
   const [loadedApi, setLoadedApi] = useState(false);
-  const [inputContainer, setInputContainer] = useState(
-    stylesSearch.setInputContainer
-  );
 
   //---- Render de Flat List ----
   const DrinkList = itemData => {
@@ -37,7 +34,7 @@ const Search = props => {
   */
   const SearchInputHandler = () => {
     setButton(
-      <View style={stylesSearch.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <Button
           color="red"
           title="Cancel"
@@ -69,19 +66,19 @@ const Search = props => {
         keyExtractor={(item, index) => item.idDrink}
         data={data.drinks}
         renderItem={DrinkList}
-        style={stylesSearch.flatListContainer}
+        style={styles.flatListContainer}
       />
     );
   }
 
   return (
-    <SafeAreaView style={stylesSearch.screen}>
-      <View style={inputContainer}>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.inputContainer}>
         <TouchableOpacity
-          style={stylesSearch.backButton}
+          style={styles.backButton}
           onPress={() => goBack()}
         >
-          <Text style={stylesSearch.textButtonBack}>Back</Text>
+          <Text style={styles.textButtonBack}>Back</Text>
         </TouchableOpacity>
         <Input
           onChangeText={onTodoClick}
