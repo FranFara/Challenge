@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {responsiveSize, normalize} from '../../utils/dimensions';
 
 export const styles = StyleSheet.create({
   screen: {
@@ -7,32 +8,31 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start"
   },
   buttonContainer: {
-    marginLeft: 10
+    marginLeft: responsiveSize(10)
   },
   flatListContainer: {
     width: "100%",
-    paddingHorizontal: 10
+    paddingHorizontal: responsiveSize(10)
   },
   backButton: {
-    height: "80%",
-    width: "15%",
+    height: responsiveSize(40),
+    width: responsiveSize(50),
     justifyContent: "center",
     backgroundColor: "#eb9d3d",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: responsiveSize(5),
     borderColor: "white",
     alignItems: "center",
-    marginRight: 5
+    marginRight: responsiveSize(5)
   },
   textButtonBack: {
-    fontSize: 16,
+    fontSize: normalize(16),
     color: "white"
   },
   inputContainer: {
-    flexDirection: "row",
-    width: "95%",
-    height: 50,
-    marginVertical: 10,
+    flexDirection: "row",    
+    height: responsiveSize(45),
+    margin: responsiveSize(10),
     alignItems: "center",
     justifyContent: "flex-start"
   }

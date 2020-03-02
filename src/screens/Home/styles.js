@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { responsiveSize, normalize } from "../../utils/dimensions";
 
 export const styles = StyleSheet.create({
   screen: {
@@ -6,21 +7,21 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    borderWidth: 3,
+    borderWidth: responsiveSize(3),
     borderColor: "#eb9d3d"
   },
   container: {
     width: "100%",
-    height: 50,
+    height: responsiveSize(50),
     alignItems: "center"
   },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 5
+    marginBottom: responsiveSize(10)
   },
   title: {
-    fontSize: 30,
+    fontSize: normalize(30),
     color: "#eb9d3d"
   },
   titleCocktail: {

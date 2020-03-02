@@ -1,33 +1,32 @@
 import { StyleSheet } from "react-native";
+import { responsiveSize, normalize } from "../../utils/dimensions";
 
 export const styles = StyleSheet.create({
   item: {
     flexDirection: "row",
     alignContent: "center",
     alignItems: "center",
-    height: 150,
+    height: responsiveSize(120),
     width: "100%",
     backgroundColor: "#eb9d3d",
-    borderRadius: 10,
-    overflow: "hidden",
-    marginVertical: 10
+    borderRadius: responsiveSize(10),    
+    marginVertical: responsiveSize(10)
   },
   image: {
-    width: 120,
-    height: 120,
-    borderRadius: 150 / 2,
-    overflow: "hidden",
-    borderWidth: 3,
+    width: responsiveSize(100),
+    height: responsiveSize(100),
+    borderRadius: responsiveSize(50),
+    borderWidth: responsiveSize(2),
     borderColor: "white",
-    marginHorizontal: 10
+    marginHorizontal: responsiveSize(15)
   },
   titleContainer: {
-    width: "70%",
+    width: responsiveSize(230),
     justifyContent: "center",
-    paddingHorizontal: 20
+    paddingHorizontal: responsiveSize(20)
   },
   title: {
-    fontSize: 26,
+    fontSize: normalize(24),
     color: "white"
   }
 });

@@ -1,16 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
+import { responsiveSize, normalize } from "../../utils/dimensions";
 
 export const styles = StyleSheet.create({
   input: {
     flex: 1,
-    width: "85%",
-    height: "100%",
+    width: responsiveSize(300),
+    height: responsiveSize(45),
     backgroundColor: "white",
-    paddingHorizontal: 10,
-    fontSize: 18,
+    paddingHorizontal: responsiveSize(10),
+    fontSize: normalize(18),
     elevation: 5,
-    borderRadius: 10,
-    borderWidth: 2,
+    borderRadius: responsiveSize(10),
+    borderWidth: responsiveSize(3),
     borderColor: "#eb9d3d"
   }
 });
