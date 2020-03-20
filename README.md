@@ -7,7 +7,7 @@ Before downloading the repo:
 
 #### Cloning 
 On your console, run:
-Inside the repo folder install the dependencies by running:
+Inside the repo folder install the dependencies by running:.
 ```bash
 git clone https://github.com/FranFara/Challenge.git
 ```
